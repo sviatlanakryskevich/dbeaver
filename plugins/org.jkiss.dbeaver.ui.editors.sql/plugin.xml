@@ -1123,8 +1123,10 @@
         <menuContribution allPopups="false" locationURI="popup:org.jkiss.dbeaver.ui.editors.sql.SQLEditor.EditorContext?after=group.copy">
             <command commandId="org.jkiss.dbeaver.core.edit.copy.special"/>
             <command commandId="org.jkiss.dbeaver.ui.editors.sql.copy.query"/>
-            <command commandId="org.jkiss.dbeaver.ui.editors.sql.search.web"/>
-            <command commandId="org.jkiss.dbeaver.ui.editors.sql.search.web.bing"/>
+            <menu id="org.jkiss.dbeaver.ui.editors.sql.SQLEditor.search.web" label="%menu.org.jkiss.dbeaver.ui.editors.sql.SQLEditor.search.web.label">
+                <command commandId="org.jkiss.dbeaver.ui.editors.sql.search.web"/>
+                <command commandId="org.jkiss.dbeaver.ui.editors.sql.search.web.bing"/>
+            </menu>
         </menuContribution>
 
         <menuContribution allPopups="false" locationURI="popup:org.eclipse.ui.popup.any?after=generate">
