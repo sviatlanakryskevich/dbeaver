@@ -36,9 +36,9 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
-public class OpenLinkInWindowHandlerBing extends AbstractOpenLinkInWindowHandler {
+public class OpenLinkInWindowHandlerGoogle extends AbstractOpenLinkInWindowHandler {
 
-    private static final String SEARCH_WEB_ADDRESS_PREFIX = "https://www.bing.com/search?q=";
+    private static final String SEARCH_WEB_ADDRESS_PREFIX = "https://www.google.com/search?q=";
 
     @Override
     protected String getSearchWebAddressPrefix(){
@@ -47,8 +47,8 @@ public class OpenLinkInWindowHandlerBing extends AbstractOpenLinkInWindowHandler
 
     @Override
     public void updateElement(UIElement element, Map parameters) {
-        element.setText(SQLEditorMessages.editors_sql_actions_search_selected_text_online_bing);
-        element.setTooltip(SQLEditorMessages.editors_sql_actions_search_selected_text_online_tip_bing);
+        element.setText(SQLEditorMessages.editors_sql_actions_search_selected_text_online_google);
+        element.setTooltip(SQLEditorMessages.editors_sql_actions_search_selected_text_online_tip_google);
     }
 
 }
