@@ -36,10 +36,9 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
-public class OpenLinkInWindowHandler extends AbstractHandler implements IElementUpdater {
+public abstract class AbstractOpenLinkInWindowHandler extends AbstractHandler implements IElementUpdater {
 
     private static final String TITLE = "Search selection in web";
-    private static final String SEARCH_WEB_ADDRESS_PREFIX = "https://www.google.com/search?q=";
 
     @Override
     public Object execute(ExecutionEvent event) throws ExecutionException {
@@ -55,27 +54,23 @@ public class OpenLinkInWindowHandler extends AbstractHandler implements IElement
             return null;
         }
 
-        String googleLink = textSelection.getText().trim();
-        googleLink = URLEncoder.encode(googleLink, StandardCharsets.UTF_8);
+        String link = textSelection.getText().trim();
+        link = URLEncoder.encode(link, StandardCharsets.UTF_8);
         if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
-            ShellUtils.launchProgram(SEARCH_WEB_ADDRESS_PREFIX + googleLink);
+            ShellUtils.launchProgram(getSearchWebAddressPrefix() + link);
         } else {
             DBWorkbench.getPlatformUI().showError(TITLE, "Desktop is not supported.");
         }
         return null;
     }
-    
+
+    protected abstract String getSearchWebAddressPrefix();
+
     private boolean isSelectedTextNullOrEmpty(ISelection selection) {
         if (selection == null || selection.isEmpty() || !(selection instanceof TextSelection textSelection)) {
             return true;
         }
-        
+
         return CommonUtils.isEmpty(textSelection.getText());
-    }
-    
-    @Override
-    public void updateElement(UIElement element, Map parameters) {
-        element.setText(SQLEditorMessages.editors_sql_actions_search_selected_text_online);
-        element.setTooltip(SQLEditorMessages.editors_sql_actions_search_selected_text_online_tip);
     }
 }
